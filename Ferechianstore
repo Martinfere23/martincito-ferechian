@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferechian Store - Tienda Online</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        header { background: #333; color: white; text-align: center; padding: 20px; }
+        .container { width: 90%; margin: auto; }
+        .product-list { display: flex; flex-wrap: wrap; justify-content: space-around; }
+        .product { border: 1px solid #ddd; padding: 15px; margin: 10px; width: 250px; text-align: center; }
+        .product img { width: 100%; height: auto; }
+        .product h3 { margin: 10px 0; }
+        .product p { font-size: 14px; color: #555; }
+        .product .price { font-size: 18px; color: #000; font-weight: bold; }
+        .btn { background: #28a745; color: white; padding: 10px; text-decoration: none; display: inline-block; margin-top: 10px; cursor: pointer; }
+        #cart { background: #f8f9fa; padding: 20px; margin-top: 20px; }
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ferechian Store</h1>
+        <p>Los mejores productos al mejor precio</p>
+    </header><div class="container">
+    <h2>Nuestros Productos</h2>
+    <div class="product-list">
+        <div class="product">
+            <img src="producto1.jpg" alt="Producto 1">
+            <h3>Nombre del Producto 1</h3>
+            <p>Descripción breve del producto.</p>
+            <p class="price">$XX.XX</p>
+            <button class="btn add-to-cart" data-name="Producto 1" data-price="XX.XX">Agregar al Carrito</button>
+        </div>
+        
+        <div class="product">
+            <img src="producto2.jpg" alt="Producto 2">
+            <h3>Nombre del Producto 2</h3>
+            <p>Descripción breve del producto.</p>
+            <p class="price">$XX.XX</p>
+            <button class="btn add-to-cart" data-name="Producto 2" data-price="XX.XX">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Carrito de Compras</h2>
+    <div id="cart"></div>
+    <button id="checkout" class="btn">Pagar</button>
+</div>
+
+<div class="container">
+    <h2>Contacto</h2>
+    <a href="https://wa.me/1154950479" class="btn">Contactar por WhatsApp</a>
+</div>
+
+<script>
+    let cart = [];
+    $(".add-to-cart").click(function() {
+        let name = $(this).data("name");
+        let price = $(this).data("price");
+        cart.push({ name, price });
+        updateCart();
+    });
+    
+    function updateCart() {
+        let cartHtml = "";
+        cart.forEach(item => {
+            cartHtml += `<div class='cart-item'><span>${item.name}</span> <span>$${item.price}</span></div>`;
+        });
+        $("#cart").html(cartHtml);
+    }
+    
+    $("#checkout").click(function() {
+        alert("Redirigiendo a la plataforma de pago...");
+        window.location.href = "https://www.plataformadepago.com";
+    });
+</script>
+
+</body>
+</html>
